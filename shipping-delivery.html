@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডেলিভারি ও শিপিং | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+
+    <!-- নতুন সুন্দর ডিজাইনের জন্য CSS -->
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 60px auto 80px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Shrikhand', cursive;
+            font-size: 3.6rem;
+            text-align: center;
+            margin: 0 0 16px;
+            background: linear-gradient(90deg, #1e5e20, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 12px rgba(30,94,32,0.15);
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(30,94,32,0.12);
+            box-shadow: 0 10px 40px rgba(30,94,32,0.08);
+            transition: all 0.35s ease;
+        }
+
+        section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(30,94,32,0.18);
+            border-color: rgba(30,94,32,0.3);
+        }
+
+        h2 {
+            font-family: 'Shrikhand', cursive;
+            color: #1e5e20;
+            font-size: 2.1rem;
+            margin: 0 0 24px;
+            border-bottom: 3px solid #a5d6a7;
+            padding-bottom: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.05rem;
+        }
+
+        th {
+            background: #2e7d32;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tr:hover {
+            background: #e8f5e9;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1.07rem;
+            color: #334155;
+            margin: 16px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 14px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: #64748b;
+            font-size: 0.98rem;
+            border-top: 1px solid rgba(30,94,32,0.1);
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2.8rem; }
+            section { padding: 24px; }
+            h2 { font-size: 1.8rem; }
+            table, th, td { font-size: 0.95rem; padding: 12px; }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+       <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+<!-- সাইড মেনু -->
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+<main class="container delivery-container">
+    <h1 style="text-align:center; color:#2e7d32;">ডেলিভারি ও শিপিং পলিসি</h1>
+    <section>
+        <h2>ডেলিভারি চার্জ</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>এলাকা</th>
+                    <th>ডেলিভারি চার্জ</th>
+                    <th>ফ্রি ডেলিভারি (যদি)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>গফরগাঁও, ময়মনসিংহ</td>
+                    <td><strong>ফ্রি</strong></td>
+                    <td>সব অর্ডারে</td>
+                </tr>
+                <tr>
+                    <td>ঢাকা সিটি (অভ্যন্তরীণ)</td>
+                    <td>৬০ টাকা</td>
+                    <td>১৫০০ টাকার উপরে</td>
+                </tr>
+                <tr>
+                    <td>ঢাকার বাইরে (জেলা শহর)</td>
+                    <td>১০০–১৫০ টাকা</td>
+                    <td>৩০০০ টাকার উপরে</td>
+                </tr>
+                <tr>
+                    <td>উপজেলা / গ্রামীণ এলাকা</td>
+                    <td>১৫০–২৫০ টাকা</td>
+                    <td>৪০০০ টাকার উপরে</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="color:#555; font-size:0.95rem;">চার্জ কুরিয়ার পার্টনারের উপর নির্ভর করে সামান্য পরিবর্তন হতে পারে।</p>
+    </section>
+    <section>
+        <h2>ডেলিভারির সময়</h2>
+        <ul>
+            <li>ঢাকার ভিতরে: ১–২ কার্যদিবস</li>
+            <li>ঢাকার বাইরে জেলা শহর: ২–৪ কার্যদিবস</li>
+            <li>উপজেলা / গ্রামীণ এলাকা: ৩–৭ কার্যদিবস</li>
+        </ul>
+        <p>অর্ডার কনফার্ম হওয়ার পর আমরা আপনাকে ফোন বা WhatsApp-এ নিশ্চিত করব।</p>
+    </section>
+    <section>
+        <h2>আমরা কোন কোন এলাকায় ডেলিভারি করি?</h2>
+        <p>বর্তমানে আমরা <strong>সারা বাংলাদেশে</strong> ডেলিভারি দিচ্ছি (সব জেলা ও উপজেলায়)।</p>
+    </section>
+    <section>
+        <h2>কুরিয়ার পার্টনার</h2>
+        <ul>
+            <li>Sundarban Courier Service</li>
+            <li>SA Paribahan</li>
+            <li>Pathao / RedX</li>
+            <li>Local Courier (ঢাকা সিটির জন্য)</li>
+        </ul>
+    </section>
+    <section>
+        <h2>গুরুত্বপূর্ণ নোট</h2>
+        <ul>
+            <li>অর্ডার কনফার্ম হওয়ার পর ডেলিভারি শুরু হয়।</li>
+            <li>ডেলিভারির সময় কাস্টমারের সাথে যোগাযোগ করা হবে।</li>
+            <li>পণ্য হাতে পাওয়ার পরই পেমেন্ট (COD ক্ষেত্রে)।</li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+<script src="script.js"></script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

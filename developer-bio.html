@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডেভেলপার জীবনী | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 900px;
+            margin: 60px auto 80px;
+            padding: 0 20px;
+        }
+        .page-title {
+            font-family: 'Shrikhand', cursive;
+            font-size: 3.6rem;
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #1e5e20, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bio-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 12px 50px rgba(46,125,50,0.12);
+            border: 1px solid rgba(46,125,50,0.08);
+            margin-bottom: 40px;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #e8f5e9;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .profile-info h2 {
+            font-size: 2.4rem;
+            color: #1e5e20;
+            margin: 0 0 12px;
+        }
+        .profile-info p.role {
+            font-size: 1.3rem;
+            color: #475569;
+            margin: 0 0 20px;
+        }
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #2e7d32;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.3s;
+        }
+        .social-btn:hover {
+            transform: translateY(-5px);
+            background: #1b5e20;
+            box-shadow: 0 8px 20px rgba(30,94,32,0.3);
+        }
+        .story {
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+        .highlight {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        @media (max-width: 640px) {
+            .profile-header { flex-direction: column; text-align: center; }
+            .profile-photo { width: 150px; height: 150px; }
+            .page-title { font-size: 2.8rem; }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.menu-btn {
+  font-size: 1.9rem;
+  cursor: pointer;
+  color: white;
+  background: none;
+  border: none;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <!-- হ্যামবার্গার বাটন (মোবাইলে দেখানোর জন্য) -->
+<button class="menu-btn" onclick="toggleSidebar()"style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</button>
+
+<!-- সাইড মেনু -->
+<aside class="sidebar" id="sidebar">
+  <!-- এখানে sidebar.html এর কনটেন্ট পেস্ট করুন বা include করুন -->
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+     <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+      <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+      <a href="media.html" class="active"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+      <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+      <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+      <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+      <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+      <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+      <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+      <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+      <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+      <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+      <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+      <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+      <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+    <!-- বাকি সব লিংক এখানে রাখুন (আপনার দেওয়া লিস্ট অনুযায়ী) -->
+  </nav>
+</aside>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+
+
+<main class="container">
+    <h1 class="page-title">ডেভেলপার জীবনী</h1>
+    <p class="subtitle">shop 20-এর পেছনের মানুষটির গল্প</p>
+
+    <div class="bio-card">
+        <div class="profile-header">
+            <img src="mahdi.jpg" alt="ইমাম আল মাহদি" class="profile-photo">
+            <div class="profile-info">
+                <h2>ইমাম আল মাহদি</h2>
+                <p class="role">Founder & Full-Stack Developer of shop 20</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/yourprofile" class="social-btn" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/8801735251867" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:mahadi102010@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/yourusername" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="story">
+            <p>আসসালামু আলাইকুম। আমি ইমাম আল মাহদি, গফরগাঁও, ময়মনসিংহ থেকে। ছোটবেলা থেকেই কম্পিউটার আর প্রোগ্রামিংয়ের প্রতি ভালোবাসা ছিল। ২০২৫ সালের শেষের দিকে আমি একা বসে ভাবলাম — কেন আমাদের এলাকার মানুষের জন্য একটা সহজ, সাশ্রয়ী ও বিশ্বস্ত অনলাইন কেনাকাটার জায়গা নেই?</p>
+
+            <p>সেই চিন্তা থেকেই জন্ম নিল <span class="highlight">shop 20</span>। গফরগাঁওয়ের একটা ছোট ঘর থেকে শুরু করে আজ সারা বাংলাদেশে ডেলিভারি দিচ্ছি। আমি নিজে কোড লিখি, ডিজাইন করি, প্রোডাক্ট সিলেক্ট করি, গ্রাহকের সাথে কথা বলি — সবকিছু একা হাতে চালাই।</p>
+
+            <p>আমার লক্ষ্য খুব সহজ — গ্রাম থেকে শহর পর্যন্ত সবার কাছে ভালো মানের প্রোডাক্ট সঠিক সময়ে, সঠিক দামে পৌঁছে দেওয়া। shop 20 শুধু একটা দোকান নয়, এটা আমার স্বপ্নের একটা অংশ।</p>
+
+            <p>আপনারা যারা shop 20 থেকে কেনাকাটা করেন, আপনারা আমার পরিবারের অংশ। কোনো সমস্যা হলে আমাকে সরাসরি বলুন — আমি নিজে সমাধান করব।</p>
+
+            <p style="margin-top:30px; font-weight:600; color:#2e7d32;">ধন্যবাদ আপনার ভালোবাসার জন্য।</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  // বাইরে ক্লিক করলে বন্ধ হয়ে যাবে
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.querySelector('.menu-btn');
+    if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

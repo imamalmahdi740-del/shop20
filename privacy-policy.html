@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রাইভেসি পলিসি | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+
+    <!-- নতুন সুন্দর ডিজাইনের জন্য CSS -->
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 60px auto 80px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Shrikhand', cursive;
+            font-size: 3.6rem;
+            text-align: center;
+            margin: 0 0 12px;
+            background: linear-gradient(90deg, #1e5e20, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 12px rgba(30,94,32,0.15);
+        }
+
+        p[style*="text-align:center; color:#555;"] {
+            text-align: center;
+            color: #475569;
+            font-size: 1.15rem;
+            margin-bottom: 50px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(30,94,32,0.12);
+            box-shadow: 0 10px 40px rgba(30,94,32,0.08);
+            transition: all 0.35s ease;
+        }
+
+        section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(30,94,32,0.18);
+            border-color: rgba(30,94,32,0.3);
+        }
+
+        h2 {
+            font-family: 'Shrikhand', cursive;
+            color: #1e5e20;
+            font-size: 2rem;
+            margin: 0 0 20px;
+            border-bottom: 3px solid #a5d6a7;
+            padding-bottom: 12px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 16px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1.07rem;
+            color: #334155;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: #64748b;
+            font-size: 0.98rem;
+            border-top: 1px solid rgba(30,94,32,0.1);
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2.8rem; }
+            section { padding: 24px; }
+            h2 { font-size: 1.8rem; }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+       <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+<!-- সাইড মেনু -->
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+<main class="container privacy-container">
+    <h1 style="text-align:center; color:#2e7d32;">প্রাইভেসি পলিসি</h1>
+    <p style="text-align:center; color:#555;">শেষ আপডেট: ৯ ফেব্রুয়ারি ২০২৬</p>
+    <section>
+        <h2>১. ভূমিকা</h2>
+        <p>shop 20 (এরপরে "আমরা", "আমাদের" বা "সাইট") আপনার গোপনীয়তাকে অত্যন্ত গুরুত্ব দেয়। এই প্রাইভেসি পলিসিতে ব্যাখ্যা করা হয়েছে আমরা আপনার ব্যক্তিগত তথ্য কীভাবে সংগ্রহ করি, ব্যবহার করি, সংরক্ষণ করি এবং সুরক্ষিত রাখি। সাইট ব্যবহার করে আপনি এই পলিসির সাথে সম্মত হচ্ছেন।</p>
+    </section>
+    <section>
+        <h2>২. আমরা যে তথ্য সংগ্রহ করি</h2>
+        <ul>
+            <li><strong>ব্যক্তিগত তথ্য:</strong> নাম, মোবাইল নম্বর, ইমেইল, ডেলিভারি ঠিকানা (অর্ডার দেওয়ার সময়)।</li>
+            <li><strong>পেমেন্ট তথ্য:</strong> ট্রানজেকশন আইডি (বিকাশ, নগদ ইত্যাদি) — আমরা কার্ড/ব্যাংক তথ্য সংরক্ষণ করি না।</li>
+            <li><strong>ডিভাইস তথ্য:</strong> আইপি অ্যাড্রেস, ব্রাউজার টাইপ (অটোমেটিক সংগ্রহ)।</li>
+            <li><strong>কুকিজ:</strong> সাইটের সুবিধার জন্য ব্যবহার করি। আপনি ব্রাউজার সেটিংস থেকে বন্ধ করতে পারেন।</li>
+        </ul>
+    </section>
+    <section>
+        <h2>৩. তথ্য কীভাবে ব্যবহার করি</h2>
+        <ul>
+            <li>অর্ডার প্রসেস ও ডেলিভারি করতে</li>
+            <li>অর্ডার স্ট্যাটাস আপডেট পাঠাতে</li>
+            <li>সাইটের সার্ভিস উন্নত করতে</li>
+            <li>আইনি প্রয়োজনে বা ফ্রড প্রতিরোধে</li>
+        </ul>
+        <p>আপনার অনুমতি ছাড়া আমরা তথ্য কাউকে বিক্রি বা শেয়ার করি না।</p>
+    </section>
+    <section>
+        <h2>৪. তথ্য শেয়ারিং</h2>
+        <p>আমরা শুধুমাত্র শেয়ার করি:</p>
+        <ul>
+            <li>ডেলিভারি পার্টনারের সাথে (ঠিকানা, নাম, ফোন)</li>
+            <li>আইনি বাধ্যবাধকতা থাকলে সরকারি কর্তৃপক্ষের সাথে</li>
+        </ul>
+    </section>
+    <section>
+        <h2>৫. তথ্য সুরক্ষা</h2>
+        <p>আমরা SSL এনক্রিপশন ও সিকিউর সার্ভার ব্যবহার করি। তবে ইন্টারনেটে ১০০% সুরক্ষা নিশ্চিত করা সম্ভব নয়।</p>
+    </section>
+    <section>
+        <h2>৬. আপনার অধিকার</h2>
+        <ul>
+            <li>তথ্য দেখতে/চেঞ্জ/ডিলিট করার অনুরোধ করতে পারেন</li>
+            <li>ইমেইল করুন: mahadi102010@gmail.com</li>
+        </ul>
+    </section>
+    <section>
+        <h2>৭. পরিবর্তন</h2>
+        <p>আমরা এই পলিসি যেকোনো সময় পরিবর্তন করতে পারি। পরিবর্তন হলে সাইটে আপডেট করা হবে।</p>
+    </section>
+    <section>
+        <h2>৮. যোগাযোগ</h2>
+        <p>কোনো প্রশ্ন থাকলে: mahadi102010@gmail.com বা 01735251867</p>
+    </section>
+</main>
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+<script src="script.js"></script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

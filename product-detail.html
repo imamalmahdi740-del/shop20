@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রোডাক্ট ডিটেইল | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-S..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* তোমার সব স্টাইল যেমন ছিল তেমনই রাখা হয়েছে */
+        .reviews-section {
+            margin: 40px auto;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .reviews-section h2 {
+            color: #2e7d32;
+            font-family: 'Shrikhand', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #add-review-form {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        #add-review-form h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .rating-input {
+            font-size: 2.2rem;
+            color: #ddd;
+            margin: 15px 0;
+        }
+        .rating-input .star {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .rating-input .star.selected,
+        .rating-input .star:hover {
+            color: #ffc107;
+        }
+        #review-text {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        #add-review-form button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #add-review-form button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+        #reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .review-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-left: 5px solid #2e7d32;
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .review-author {
+            font-weight: 600;
+            color: #333;
+        }
+        .review-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .review-rating {
+            color: #ffc107;
+            font-size: 1.3rem;
+        }
+        .review-text {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* নতুন আকর্ষণীয় ডিজাইন + স্লাইডার */
+        .detail-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(46,125,50,0.15);
+            margin: 40px auto;
+            max-width: 1100px;
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid rgba(46,125,50,0.1);
+            transition: all 0.4s;
+        }
+        .detail-card:hover {
+            box-shadow: 0 25px 70px rgba(46,125,50,0.22);
+        }
+        .image-slider {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        .main-image {
+            width: 100%;
+            height: auto;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: transform 0.5s;
+        }
+        .main-image:hover {
+            transform: scale(1.04);
+        }
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .thumbnail.active,
+        .thumbnail:hover {
+            border-color: #4caf50;
+            transform: scale(1.12);
+            box-shadow: 0 6px 18px rgba(76,175,80,0.3);
+        }
+        .product-info {
+            padding: 45px 40px;
+            flex: 1;
+            min-width: 380px;
+        }
+        #product-name {
+            font-family: 'Shrikhand', cursive;
+            color: #1e5e20;
+            font-size: 2.9rem;
+            margin-bottom: 18px;
+            line-height: 1.1;
+        }
+        .price-block {
+            font-size: 2.1rem;
+            font-weight: bold;
+            color: #2e7d32;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        #product-old-price {
+            font-size: 1.6rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        .offer-badge {
+            background: linear-gradient(135deg, #ff5252, #d50000);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.05rem;
+            box-shadow: 0 5px 15px rgba(255,82,82,0.35);
+            animation: pulseBadge 2s infinite;
+        }
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        #product-stock {
+            font-size: 1.35rem;
+            color: #555;
+            margin: 18px 0;
+            font-weight: 500;
+        }
+        #product-description {
+            font-size: 1.18rem;
+            line-height: 1.85;
+            color: #444;
+            margin: 30px 0;
+        }
+        .order-btn {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.35rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 8px 25px rgba(46,125,50,0.35);
+            font-weight: bold;
+        }
+        .order-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(46,125,50,0.5);
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+        }
+        @media (max-width: 768px) {
+            .detail-card {
+                flex-direction: column;
+            }
+            .image-slider {
+                max-width: 100%;
+            }
+            .product-info {
+                padding: 30px 25px;
+            }
+            #product-name {
+                font-size: 2.4rem;
+            }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+       <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+<!-- সাইড মেনু -->
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+<section id="product-detail-page">
+    <main class="container">
+        <div class="detail-card">
+            <div class="image-slider">
+                <img id="product-image" class="main-image" src="https://via.placeholder.com/500?text=ছবি+লোড+হচ্ছে..." alt="প্রোডাক্ট" loading="lazy">
+                <div class="thumbnail-container" id="thumbnail-container"></div>
+            </div>
+            <div class="product-info">
+                <h1 id="product-name">প্রোডাক্টের নাম</h1>
+                <p class="price-block">
+                    <span id="product-price">দাম লোড হচ্ছে...</span>
+                    <span id="product-old-price" style="text-decoration:line-through; color:#999; margin-left:12px;"></span>
+                </p>
+                <p id="product-stock">স্টক: 0 পিস</p>
+                <p id="product-description">বিস্তারিত বর্ণনা লোড হচ্ছে...</p>
+                <button onclick="goToOrder()" class="order-btn">অর্ডার করুন</button>
+            </div>
+        </div>
+    </main>
+    <!-- রিভিউ সেকশন -->
+    <div class="reviews-section">
+        <h2>গ্রাহকের মতামত</h2>
+        <div id="add-review-form">
+            <h3>আপনার মতামত দিন</h3>
+            <input type="text" id="review-author" placeholder="আপনার নাম (ঐচ্ছিক)">
+            <div class="rating-input">
+                <span class="star" data-value="1" onclick="setRating(1)">★</span>
+                <span class="star" data-value="2" onclick="setRating(2)">★</span>
+                <span class="star" data-value="3" onclick="setRating(3)">★</span>
+                <span class="star" data-value="4" onclick="setRating(4)">★</span>
+                <span class="star" data-value="5" onclick="setRating(5)">★</span>
+            </div>
+            <textarea id="review-text" placeholder="আপনার অভিজ্ঞতা লিখুন..." rows="4"></textarea>
+            <button onclick="submitReview()">মন্তব্য জমা দিন</button>
+        </div>
+        <div id="reviews-list" class="reviews-scroll-box"></div>
+    </div>
+</section>
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+<script src="script.js"></script>
+<script>
+// প্রোডাক্ট ডিটেইল লোড করা (ছবির লাইন ঠিক করা হয়েছে + স্লাইডার যোগ করা হয়েছে)
+window.addEventListener('load', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+   
+    if (!productId) {
+        document.getElementById('product-name').textContent = 'প্রোডাক্ট পাওয়া যায়নি';
+        return;
+    }
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const product = products[productId]; // অ্যাডমিনে ইনডেক্স দিয়ে সেভ হচ্ছে
+    if (product) {
+        // ছবি লোড + স্লাইডার তৈরি
+        const mainImage = document.getElementById('product-image');
+        const thumbContainer = document.getElementById('thumbnail-container');
+        let images = [];
+
+        // ছবি সংগ্রহ
+        if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+            images = product.images;
+        } else if (product.image) {
+            images = [product.image];
+        } else {
+            images = ['https://via.placeholder.com/500?text=ছবি+নেই'];
+        }
+
+        // মূল ছবি (প্রথম ছবি)
+        mainImage.src = images[0];
+        mainImage.alt = product.name;
+
+        // থাম্বনেইল তৈরি (২ বা ৩টা থাকলে)
+        if (images.length > 1) {
+            images.forEach((imgSrc, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgSrc;
+                thumb.className = 'thumbnail';
+                thumb.alt = `${product.name} - ${index + 1}`;
+                thumb.onclick = () => {
+                    mainImage.src = imgSrc;
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                };
+                if (index === 0) thumb.classList.add('active');
+                thumbContainer.appendChild(thumb);
+            });
+        }
+
+        // নাম, দাম, স্টক, বিবরণ লোড
+        document.getElementById('product-name').textContent = product.name || 'নাম নেই';
+        
+        // অফার চেক করে দাম দেখানো
+        const offers = JSON.parse(localStorage.getItem('offers')) || [];
+        const activeOffer = offers.find(o => o.productId == productId);
+        const priceElement = document.getElementById('product-price');
+        if (activeOffer) {
+            const oldPrice = product.price;
+            const newPrice = activeOffer.discountType === 'percent'
+                ? Math.round(oldPrice * (1 - activeOffer.discountValue / 100))
+                : oldPrice - activeOffer.discountValue;
+
+            const discountText = activeOffer.discountType === 'percent'
+                ? `-${activeOffer.discountValue}% ছাড়`
+                : `-${activeOffer.discountValue} টাকা ছাড়`;
+
+            priceElement.innerHTML = `
+                <span class="price-old">${oldPrice} টাকা</span>
+                <span class="price-new">${newPrice} টাকা</span>
+                <span class="offer-badge">${discountText}</span>
+            `;
+        } else {
+            priceElement.innerHTML = `<span class="price-new">${product.price} টাকা</span>`;
+        }
+
+        document.getElementById('product-stock').textContent = 'স্টক: ' + (product.stock || 'অজানা') + ' পিস';
+        document.getElementById('product-description').textContent = product.details || product.description || 'কোনো বিস্তারিত তথ্য নেই';
+    } else {
+        document.getElementById('product-name').textContent = 'প্রোডাক্ট পাওয়া যায়নি';
+    }
+    loadReviews();
+});
+// অর্ডার পেইজে যাওয়া
+function goToOrder() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    if (productId) {
+        window.location.href = `order.html?id=${productId}`;
+    }
+}
+// রিভিউ রেটিং সিলেক্ট করা
+let currentRating = 0;
+function setRating(value) {
+    currentRating = value;
+    document.querySelectorAll('.star').forEach(star => {
+        star.classList.toggle('selected', star.dataset.value <= value);
+    });
+}
+// মন্তব্য জমা দেওয়া
+function submitReview() {
+    const author = document.getElementById('review-author').value.trim() || 'অজ্ঞাত';
+    const text = document.getElementById('review-text').value.trim();
+    const productId = new URLSearchParams(window.location.search).get('id') || 'unknown';
+    if (!text) {
+        alert('মন্তব্য লিখুন');
+        return;
+    }
+    const review = {
+        author,
+        rating: currentRating,
+        text,
+        date: new Date().toLocaleString('bn-BD')
+    };
+    let reviews = JSON.parse(localStorage.getItem(`reviews_${productId}`)) || [];
+    reviews.push(review);
+    localStorage.setItem(`reviews_${productId}`, JSON.stringify(reviews));
+    document.getElementById('review-author').value = '';
+    document.getElementById('review-text').value = '';
+    currentRating = 0;
+    setRating(0);
+    alert('মন্তব্য জমা হয়েছে!');
+    loadReviews();
+}
+// রিভিউ লোড
+function loadReviews() {
+    const list = document.getElementById('reviews-list');
+    if (!list) return;
+    list.innerHTML = '';
+    const productId = new URLSearchParams(window.location.search).get('id') || 'unknown';
+    const reviews = JSON.parse(localStorage.getItem(`reviews_${productId}`)) || [];
+    if (reviews.length === 0) {
+        list.innerHTML = '<p style="text-align:center; color:#777;">কোনো মন্তব্য এখনো নেই</p>';
+        return;
+    }
+    reviews.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+            <div class="review-header">
+                <span class="review-author">${r.author}</span>
+                <span class="review-date">${r.date}</span>
+            </div>
+            <div class="review-rating">
+                ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+            </div>
+            <p class="review-text">${r.text}</p>
+        `;
+        list.appendChild(card);
+    });
+}
+</script>
+<script>
+// প্রোডাক্ট ডিটেইল লোড হলে অফার চেক করা (আগের কোড রাখা হয়েছে)
+function checkAndShowOffer() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    if (!productId) return;
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const offers = JSON.parse(localStorage.getItem('offers')) || [];
+    const product = products.find(p => (p.id || products.indexOf(p)) == productId);
+    if (!product) return;
+    const priceElement = document.getElementById('product-price');
+    if (!priceElement) return;
+    // অফার খুঁজে বের করা
+    const activeOffer = offers.find(o => o.productId == productId);
+    if (activeOffer) {
+        const oldPrice = product.price;
+        const newPrice = activeOffer.discountType === 'percent'
+            ? Math.round(oldPrice * (1 - activeOffer.discountValue / 100))
+            : oldPrice - activeOffer.discountValue;
+        const discountText = activeOffer.discountType === 'percent'
+            ? `-${activeOffer.discountValue}% ছাড়`
+            : `-${activeOffer.discountValue} টাকা ছাড়`;
+        priceElement.innerHTML = `
+            <span class="price-old">${oldPrice} টাকা</span>
+            <span class="price-new">${newPrice} টাকা</span>
+            <span class="offer-badge">${discountText}</span>
+            <p style="color:#e63946; font-size:1rem; margin-top:8px;">
+                ⏳ অফার শেষ: ${new Date(activeOffer.endDate).toLocaleDateString('bn-BD')}
+            </p>
+        `;
+    } else {
+        priceElement.innerHTML = `
+            <span class="price-new">${product.price} টাকা</span>
+        `;
+    }
+}
+// পেজ লোড হলে চেক করা
+window.addEventListener('load', checkAndShowOffer);
+</script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>
+<script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

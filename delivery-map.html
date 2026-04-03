@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গ্রাম থেকে গ্রামে ডেলিভারি ম্যাপ | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 60px auto 80px;
+            padding: 0 20px;
+        }
+        .page-title {
+            font-family: 'Shrikhand', cursive;
+            font-size: 3.5rem;
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #1e5e20, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #475569;
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+        }
+        .map-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(46,125,50,0.12);
+            border: 1px solid rgba(46,125,50,0.1);
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 12px;
+        }
+        .delivery-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        .delivery-table th, .delivery-table td {
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.05rem;
+        }
+        .delivery-table th {
+            background: #2e7d32;
+            color: white;
+            font-weight: 600;
+        }
+        .delivery-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        .delivery-table tr:hover {
+            background: #e8f5e9;
+        }
+        .note {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            color: #1e5e20;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+        .cta-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 40px auto 0;
+            padding: 16px;
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(46,125,50,0.4);
+        }
+        @media (max-width: 768px) {
+            iframe { height: 350px; }
+            .delivery-table th, .delivery-table td { font-size: 0.95rem; padding: 12px; }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+<main class="container">
+    <h1 class="page-title">গ্রাম থেকে গ্রামে ডেলিভারি ম্যাপ</h1>
+    <p class="subtitle">আমরা গফরগাঁও উপজেলা ও আশেপাশের সকল গ্রামে দ্রুত ও নিরাপদ ডেলিভারি দিচ্ছি। নিচের ম্যাপ ও টেবিল দেখে আপনার গ্রামের ডেলিভারি সময় ও চার্জ জানুন।</p>
+
+    <!-- গুগল ম্যাপ এম্বেড (গফরগাঁও উপজেলা ফোকাসড) -->
+    <div class="map-card">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0000000000005!2d90.54871759999999!3d24.4571749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3756550000000001%3A0x0000000000000000!2sGafargaon%2C%20Mymensingh!5e0!3m2!1sen!2sbd!4v1690000000000" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- ডেলিভারি টেবিল -->
+    <div class="delivery-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ইউনিয়ন / গ্রাম এলাকা</th>
+                    <th>ডেলিভারি সময়</th>
+                    <th>ডেলিভারি চার্জ</th>
+                    <th>বিশেষ নোট</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>গফরগাঁও সদর + আশেপাশের মৌজা</td>
+                    <td>৩০-৬০ মিনিট</td>
+                    <td>ফ্রি (৫০০+ টাকার অর্ডারে)</td>
+                    <td>সকাল ৯টা থেকে রাত ৯টা</td>
+                </tr>
+                <tr>
+                    <td>রসুলপুর, সলতিয়া, পাঁচবাগ</td>
+                    <td>১-১.৫ ঘণ্টা</td>
+                    <td>২০-৪০ টাকা</td>
+                    <td>ফ্রি যদি ৮০০+ টাকার অর্ডার</td>
+                </tr>
+                <tr>
+                    <td>জোসরা, লঙ্গাইর, দত্তেরবাজার</td>
+                    <td>১.৫-২ ঘণ্টা</td>
+                    <td>৪০-৬০ টাকা</td>
+                    <td>দুপুর ১২টা-বিকেল ৫টা বেশি দ্রুত</td>
+                </tr>
+                <tr>
+                    <td>নিগুয়ারি, উস্তি, পাইথল</td>
+                    <td>২-৩ ঘণ্টা</td>
+                    <td>৫০-৮০ টাকা</td>
+                    <td>অগ্রিম পেমেন্টে ফ্রি</td>
+                </tr>
+                <tr>
+                    <td>আশেপাশের অন্যান্য গ্রাম (ফুলবাড়িয়া/ত্রিশাল সীমান্ত)</td>
+                    <td>৩-৪ ঘণ্টা</td>
+                    <td>৮০-১২০ টাকা</td>
+                    <td>১০০০+ টাকার অর্ডারে ৫০% ছাড়</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note">
+        <strong>গুরুত্বপূর্ণ:</strong> ডেলিভারি সময় ও চার্জ আবহাওয়া/ট্রাফিকের উপর নির্ভর করে সামান্য পরিবর্তন হতে পারে। আপনার গ্রাম যদি লিস্টে না থাকে তাহলে WhatsApp-এ মেসেজ করুন — আমরা খুব শীঘ্রই জানিয়ে দেব।
+    </div>
+
+    <a href="index.html" class="cta-btn">এখনই অর্ডার করুন</a>
+</main>
+
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>আমাদের সাথে যুক্ত হোন | shop 20</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Shrikhand&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-dark: #1b5e20;
+      --light-green: #e8f5e9;
+      --very-light-green: #f1f8e9;
+      --white: #ffffff;
+      --gray: #555;
+      --dark-gray: #333;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--very-light-green);
+      color: var(--dark-gray);
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .menu-btn {
+      font-size: 1.9rem;
+      cursor: pointer;
+      color: white;
+      background: none;
+      border: none;
+    }
+
+    .logo {
+      font-family: 'Shrikhand', cursive;
+      font-size: 2.3rem;
+    }
+
+    .search-btn {
+      font-size: 1.6rem;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* সাইডবার */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: white;
+      box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+      z-index: 2000;
+      transition: left 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar-header {
+      padding: 1.8rem 1.2rem;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+    }
+
+    .sidebar-header h2 {
+      font-family: 'Shrikhand', cursive;
+      font-size: 2.3rem;
+      margin: 0;
+    }
+
+    .sidebar-menu {
+      padding: 1rem 0;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      padding: 0.95rem 1.5rem;
+      color: var(--dark-gray);
+      text-decoration: none;
+      font-size: 1.05rem;
+      transition: all 0.25s;
+    }
+
+    .sidebar-menu a:hover {
+      background: var(--light-green);
+      color: var(--primary-dark);
+    }
+
+    .sidebar-menu a i {
+      margin-right: 12px;
+      width: 24px;
+      text-align: center;
+      font-size: 1.25rem;
+    }
+
+    main {
+      padding: 2.5rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 1.18rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.4rem;
+      margin: 0 auto;
+      max-width: 900px;
+    }
+
+    .social-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.8rem 1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--dark-gray);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      border: 1px solid #e0e0e0;
+      min-height: 180px;
+    }
+
+    .social-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(46,125,50,0.22);
+      border-color: var(--primary);
+    }
+
+    .social-card .icon-wrapper {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--light-green);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      transition: all 0.3s;
+    }
+
+    .social-card:hover .icon-wrapper {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .social-card span {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1.8rem;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* মোবাইলে গ্রিড ২ কলাম */
+    @media (max-width: 576px) {
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+      .social-card {
+        padding: 1.4rem 0.8rem;
+        min-height: 160px;
+      }
+      .social-card .icon-wrapper {
+        width: 70px;
+        height: 70px;
+        font-size: 2.6rem;
+      }
+      .social-card span {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .main-content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- হেডার -->
+  <header>
+    <div class="header-left">
+      <button class="menu-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">shop 20</div>
+    </div>
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+  </header>
+
+  <!-- সাইড মেনু -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>shop 20</h2>
+    </div>
+    <nav class="sidebar-menu">
+      <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+      <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+      <a href="media.html" class="active"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+      <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+      <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+      <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+      <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+      <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+      <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+      <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+      <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+      <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+      <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+      <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+      <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+    </nav>
+  </aside>
+
+  <!-- মূল কনটেন্ট -->
+  <main>
+    <div class="container">
+      <p class="intro">
+        আমাদের ওয়েবসাইট, সোশ্যাল মিডিয়া ও মেসেজিং প্ল্যাটফর্মে যুক্ত হয়ে নতুন প্রোডাক্ট, অফার ও আপডেট পান।
+      </p>
+
+      <div class="social-grid">
+        <a href="https://shop20.com" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fas fa-globe"></i></div>
+          <span>ওয়েবসাইট</span>
+        </a>
+        <a href="https://facebook.com/shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-facebook-f"></i></div>
+          <span>Facebook</span>
+        </a>
+        <a href="https://m.me/shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-facebook-messenger"></i></div>
+          <span>Messenger</span>
+        </a>
+        <a href="https://wa.me/8801735251867" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-whatsapp"></i></div>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://t.me/shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-telegram-plane"></i></div>
+          <span>Telegram</span>
+        </a>
+        <a href="https://twitter.com/shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-x-twitter"></i></div>
+          <span>Twitter / X</span>
+        </a>
+        <a href="https://instagram.com/shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-instagram"></i></div>
+          <span>Instagram</span>
+        </a>
+        <a href="https://tiktok.com/@shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-tiktok"></i></div>
+          <span>TikTok</span>
+        </a>
+        <a href="https://linkedin.com/company/shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-linkedin-in"></i></div>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/shop20bd" target="_blank" class="social-card">
+          <div class="icon-wrapper"><i class="fab fa-github"></i></div>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; ২০২৫–২০২৬ shop 20 • সকল অধিকার সংরক্ষিত</p>
+    <p>যোগাযোগ: <a href="tel:+8801735251867">01735251867</a></p>
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuBtn = document.querySelector('.menu-btn');
+      if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>

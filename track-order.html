@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অর্ডার ট্র্যাক করুন | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+
+    <style>
+        /* অর্ডার ট্র্যাক সেকশন সুন্দর করা */
+        .track-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+        }
+        .track-container h1 {
+            text-align: center;
+            color: #2e7d32;
+            font-family: 'Shrikhand', cursive;
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+        }
+        .track-input {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .track-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .track-btn:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+        .order-status {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f1f8e9;
+            border-radius: 12px;
+        }
+        .status-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .status-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid #2e7d32;
+        }
+        .status-item h4 {
+            margin: 0 0 8px;
+            color: #2e7d32;
+        }
+        .no-order {
+            text-align: center;
+            color: #777;
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+       <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+
+<!-- সাইড মেনু -->
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+
+<main class="track-container">
+    <h1>অর্ডার ট্র্যাক করুন</h1>
+    <p>আপনার মোবাইল নম্বর দিয়ে অর্ডারের স্ট্যাটাস দেখুন</p>
+   
+    <input type="text" id="track-mobile" class="track-input" placeholder="মোবাইল নম্বর দিন (যেমন: 01735251867)" maxlength="11">
+    <button class="track-btn" onclick="trackOrder()">ট্র্যাক করুন</button>
+
+    <div id="order-status" class="order-status" style="display:none;">
+        <h2>অর্ডার স্ট্যাটাস</h2>
+        <div class="status-timeline" id="status-timeline"></div>
+    </div>
+
+    <p id="no-order-msg" class="no-order" style="display:none;">
+        কোনো অর্ডার পাওয়া যায়নি।
+    </p>
+</main>
+
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- Firebase Initialization -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBNEIw9jxvPSLX1dJ3K-NQaPY8esqWlQI8",
+        authDomain: "shop20-91c4a.firebaseapp.com",
+        projectId: "shop20-91c4a",
+        storageBucket: "shop20-91c4a.firebasestorage.app",
+        messagingSenderId: "736464191653",
+        appId: "1:736464191653:web:9ff3f96be9042db0a44d4c",
+        measurementId: "G-M0FX62X93Y"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    window.db = db;
+    console.log("Firestore সংযোগ সফলভাবে হয়েছে!");
+</script>
+
+<script>
+// অর্ডার ট্র্যাক ফাংশন
+function trackOrder() {
+    const mobile = document.getElementById("track-mobile").value.trim();
+    if (!mobile || mobile.length !== 11 || !mobile.startsWith("01")) {
+        alert("সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন");
+        return;
+    }
+
+    // সকল অর্ডার লোড
+    const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    // এই নম্বর দিয়ে অর্ডার ফিল্টার
+    const userOrders = allOrders.filter(order => order.mobile === mobile);
+
+    const statusDiv = document.getElementById("order-status");
+    const timeline = document.getElementById("status-timeline");
+    const noOrderMsg = document.getElementById("no-order-msg");
+
+    timeline.innerHTML = '';
+
+    if (userOrders.length === 0) {
+        statusDiv.style.display = "none";
+        noOrderMsg.style.display = "block";
+        return;
+    }
+
+    // অর্ডার পাওয়া গেছে
+    statusDiv.style.display = "block";
+    noOrderMsg.style.display = "none";
+
+    userOrders.forEach((order, idx) => {
+        const item = document.createElement('div');
+        item.className = 'status-item';
+        item.innerHTML = `
+            <h4>অর্ডার #${idx + 1}</h4>
+            <p><strong>প্রোডাক্ট:</strong> ${order.productName} × ${order.quantity}</p>
+            <p><strong>মোট:</strong> ${order.totalAmount} টাকা</p>
+            <p><strong>পেমেন্ট:</strong> ${order.payment}</p>
+            <p><strong>স্ট্যাটাস:</strong> <span style="color:#2e7d32; font-weight:bold;">${order.status || 'পেন্ডিং'}</span></p>
+            <p><strong>অর্ডারের সময়:</strong> ${order.timestamp}</p>
+        `;
+        timeline.appendChild(item);
+    });
+}
+</script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

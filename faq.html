@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রশ্ন-উত্তর (FAQ) | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Shrikhand&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(to bottom, #f1f8e9, #ffffff);
+            margin: 0;
+            padding: 0;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-family: 'Shrikhand', cursive;
+            color: #2e7d32;
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(46,125,50,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #475569;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(46,125,50,0.15);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            cursor: pointer;
+            background: linear-gradient(to right, #f8fafc, #ffffff);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f1f8e9;
+        }
+
+        .faq-question i.fa-question-circle {
+            font-size: 1.6rem;
+            color: #2e7d32;
+            margin-right: 16px;
+        }
+
+        .faq-question span {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1f2937;
+            flex: 1;
+        }
+
+        .faq-icon i {
+            font-size: 1.4rem;
+            color: #64748b;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px;
+            background: #f8fafc;
+            transition: all 0.4s ease;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 600px; /* যথেষ্ট বড় মান দাও যাতে সব দেখায় */
+            padding: 24px;
+        }
+
+        footer p:last-child {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+       <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+
+<!-- সাইড মেনু -->
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+
+<main class="container faq-container">
+    <h1 class="page-title">প্রশ্ন-উত্তর (FAQ)</h1>
+    <p class="subtitle">আপনার যেকোনো প্রশ্নের উত্তর খুব সহজে এখানে পাবেন</p>
+
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <i class="fas fa-question-circle"></i>
+                <span>ডেলিভারি কতদিন লাগে?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                ঢাকার ভিতরে সাধারণত ১–২ কার্যদিবস, ঢাকার বাইরে ২–৪ কার্যদিবস লাগে। অর্ডার কনফার্ম হওয়ার পর আমরা আপনাকে ফোন/SMS করে নিশ্চিত করব।
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <i class="fas fa-question-circle"></i>
+                <span>রিটার্ন পলিসি কী?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                প্রোডাক্ট পাওয়ার ৭ দিনের মধ্যে রিটার্ন করতে পারবেন যদি প্রোডাক্ট ক্ষতিগ্রস্ত বা ভুল হয়। রিটার্নের আগে আমাদের সাথে যোগাযোগ করুন। ডেলিভারি চার্জ ফেরতযোগ্য নয়।
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <i class="fas fa-question-circle"></i>
+                <span>পেমেন্ট কীভাবে করব?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                ক্যাশ অন ডেলিভারি (COD), বিকাশ, নগদ, রকেট বা উপায় দিয়ে পেমেন্ট করতে পারেন। মোবাইল ব্যাংকিং সিলেক্ট করলে আমাদের নম্বর দেখাবে। পেমেন্ট করার পর ট্রানজেকশন আইডি দিন।
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <i class="fas fa-question-circle"></i>
+                <span>অর্ডার ক্যানসেল করতে পারব কি?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                অর্ডার কনফার্ম হওয়ার আগে (ডেলিভারি শুরু হওয়ার আগে) ক্যানসেল করতে পারবেন। আমাদের সাথে যোগাযোগ করুন। ডেলিভারি শুরু হয়ে গেলে ক্যানসেল করা যায় না।
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <i class="fas fa-question-circle"></i>
+                <span>প্রোডাক্টের ওয়ারেন্টি আছে কি?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                কিছু ইলেকট্রনিক্স প্রোডাক্টে ৭ দিনের রিপ্লেসমেন্ট ওয়ারেন্টি আছে। বিস্তারিত প্রোডাক্ট ডিটেইল পেজে দেখুন বা আমাদের সাথে যোগাযোগ করুন।
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <i class="fas fa-question-circle"></i>
+                <span>ফ্রি ডেলিভারি কখন পাব?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                ঢাকায় ১৫০০ টাকার উপরে, ঢাকার বাইরে ৩০০০ টাকার উপরে এবং গ্রামীণ এলাকায় ৪০০০ টাকার উপরে অর্ডারে ফ্রি ডেলিভারি পাবেন।
+            </div>
+        </div>
+
+        <!-- আরও কিছু FAQ যোগ করা যেতে পারে -->
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                <i class="fas fa-question-circle"></i>
+                <span>অর্ডার কনফার্ম হওয়ার পর কী হবে?</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                অর্ডার কনফার্ম হলে আপনি SMS/কল পাবেন। তারপর প্যাকিং করে ডেলিভারির জন্য দেওয়া হবে। ট্র্যাক করতে চাইলে "অর্ডার ট্র্যাক" পেইজে যান।
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>সাহায্য লাগলে যোগাযোগ করুন: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// FAQ অ্যাকর্ডিয়ন টগল (আগের মতোই রাখা)
+function toggleFaq(element) {
+    const faqItem = element.parentElement;
+    faqItem.classList.toggle('active');
+
+    // আইকন চেঞ্জ
+    const icon = element.querySelector('.faq-icon i');
+    if (faqItem.classList.contains('active')) {
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+    } else {
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+    }
+}
+</script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

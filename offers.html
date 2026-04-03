@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অফারস / ডিলস | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+        .offers-section {
+            padding: 70px 15px 100px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: 'Shrikhand', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            background: linear-gradient(90deg, #1e5e20, #4caf50, #66bb6a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 60px;
+            text-shadow: 0 2px 10px rgba(46,125,50,0.15);
+        }
+        .discounts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* মোবাইলে ডিফল্ট ২ কলাম */
+            gap: 24px;
+        }
+        .offer-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(46,125,50,0.12);
+            transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            border: 1px solid rgba(46,125,50,0.08);
+        }
+        .offer-card:hover {
+            transform: translateY(-14px);
+            box-shadow: 0 30px 70px rgba(46,125,50,0.25);
+            border-color: #4caf50;
+        }
+        .offer-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+        .offer-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .offer-card:hover .offer-img {
+            transform: scale(1.12);
+        }
+        .offer-badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: linear-gradient(135deg, #ff5252, #d50000);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 18px rgba(255,82,82,0.45);
+            z-index: 10;
+            animation: pulseBadge 2s infinite;
+        }
+        @keyframes pulseBadge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        .offer-info {
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .offer-info h3 {
+            font-size: 1.45rem;
+            margin: 0 0 12px;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        .price-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            font-size: 1.3rem;
+        }
+        .price-old {
+            text-decoration: line-through;
+            color: #757575;
+            font-size: 1.15rem;
+        }
+        .price-new {
+            color: #2e7d32;
+            font-weight: 800;
+            font-size: 1.6rem;
+        }
+        .offer-expiry {
+            color: #d32f2f;
+            font-size: 1rem;
+            margin: 12px 0 18px;
+            font-weight: 600;
+        }
+        .offer-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #2e7d32, #4caf50);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+        .offer-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .offer-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .offer-btn:hover {
+            background: linear-gradient(90deg, #4caf50, #66bb6a);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(76,175,80,0.4);
+        }
+        #no-discounts {
+            text-align: center;
+            color: #555;
+            font-size: 1.4rem;
+            padding: 100px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            margin: 40px auto;
+            max-width: 700px;
+        }
+        @media (min-width: 769px) {
+            .discounts-grid {
+                grid-template-columns: repeat(3, 1fr); /* ডেস্কটপে ৩টা */
+            }
+        }
+        @media (max-width: 480px) {
+            .discounts-grid {
+                grid-template-columns: 1fr; /* খুব ছোট স্ক্রিনে ১টা */
+            }
+            .offer-img { height: 190px; }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+       <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+
+<!-- সাইড মেনু (আগের মতো রাখুন) -->
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+
+<section class="offers-section">
+    <h1>🔥 হট অফারস / ডিলস</h1>
+    <div class="discounts-grid" id="discounts-grid"></div>
+    <p id="no-discounts" style="display:none;">
+        বর্তমানে কোনো অ্যাকটিভ অফার নেই। শীঘ্রই নতুন ডিল আসছে! 🔥
+    </p>
+</section>
+
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+// অফার লোড (আগের কোডের মতোই রাখুন বা আপডেট করুন)
+function loadOffers() {
+    const grid = document.getElementById('discounts-grid');
+    const noMsg = document.getElementById('no-discounts');
+    grid.innerHTML = '';
+
+    const offers = JSON.parse(localStorage.getItem('offers')) || [];
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    if (offers.length === 0) {
+        noMsg.style.display = 'block';
+        return;
+    }
+
+    noMsg.style.display = 'none';
+
+    offers.forEach(offer => {
+        const product = products.find(p => (p.id || products.indexOf(p)) == offer.productId);
+        if (!product) return;
+
+        const discountText = offer.discountType === 'percent' 
+            ? `-${offer.discountValue}%` 
+            : `-${offer.discountValue} টাকা`;
+
+        const oldPrice = product.price;
+        const newPrice = offer.discountType === 'percent'
+            ? Math.round(oldPrice * (1 - offer.discountValue/100))
+            : oldPrice - offer.discountValue;
+
+        const card = document.createElement('div');
+        card.className = 'offer-card';
+        card.innerHTML = `
+            <div class="offer-img-container">
+                <div class="offer-badge">${discountText} ছাড়</div>
+                <img src="${product.images?.[0] || product.image || 'https://via.placeholder.com/400x300?text=অফার'}" class="offer-img" alt="${product.name}">
+            </div>
+            <div class="offer-info">
+                <h3>${product.name}</h3>
+                <div class="price-container">
+                    <span class="price-old">${oldPrice} টাকা</span>
+                    <span class="price-new">${newPrice} টাকা</span>
+                </div>
+                <p class="offer-expiry">⏳ অফার শেষ: ${new Date(offer.endDate).toLocaleDateString('bn-BD')}</p>
+                <button onclick="window.location.href='product-detail.html?id=${offer.productId}'" class="offer-btn">এখনই কিনুন</button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+window.addEventListener('load', loadOffers);
+</script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

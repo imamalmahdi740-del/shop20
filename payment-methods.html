@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পেমেন্ট পদ্ধতি | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 920px;
+            margin: 60px auto 80px;
+            padding: 0 20px;
+        }
+        h1 {
+            font-family: 'Shrikhand', cursive;
+            font-size: 3.5rem;
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #1e5e20, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #475569;
+            font-size: 1.25rem;
+            margin-bottom: 50px;
+        }
+        .payment-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(46,125,50,0.08);
+            border: 1px solid rgba(46,125,50,0.1);
+        }
+        h2 {
+            color: #1e5e20;
+            font-size: 2rem;
+            margin: 0 0 24px;
+            border-bottom: 3px solid #a5d6a7;
+            padding-bottom: 12px;
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .method-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        .method-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(46,125,50,0.15);
+            border-color: #2e7d32;
+        }
+        .method-icon {
+            font-size: 3.5rem;
+            color: #2e7d32;
+            margin-bottom: 16px;
+        }
+        .method-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            margin: 12px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px;
+            background: white;
+        }
+        .method-card h3 {
+            font-size: 1.4rem;
+            margin: 0 0 8px;
+            color: #1e5e20;
+        }
+        .method-number {
+            font-weight: bold;
+            color: #2e7d32;
+            margin: 8px 0;
+        }
+        .method-card p {
+            color: #475569;
+            font-size: 1rem;
+        }
+        .note {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            color: #1e5e20;
+            font-size: 1.05rem;
+        }
+        @media (max-width: 640px) {
+            h1 { font-size: 2.8rem; }
+            .payment-methods { grid-template-columns: 1fr; }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <span class="menu-icon" onclick="toggleSideMenu()">☰</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+<main class="container">
+    <h1>পেমেন্ট পদ্ধতি</h1>
+    <p class="subtitle">আমরা নিরাপদ ও সহজ পেমেন্ট অপশন দিচ্ছি যাতে আপনার কেনাকাটা আরও স্বাচ্ছন্দ্যময় হয়</p>
+    <div class="payment-section">
+        <h2>উপলব্ধ পেমেন্ট পদ্ধতি</h2>
+        <div class="payment-methods">
+            <div class="method-card">
+                <div class="method-icon"><i class="fas fa-money-bill-wave"></i></div>
+                <h3>ক্যাশ অন ডেলিভারি (COD)</h3>
+                <p>পণ্য হাতে পেয়ে পেমেন্ট করুন। ঢাকা ও সারা বাংলাদেশে উপলব্ধ।</p>
+            </div>
+            <div class="method-card">
+                <img src="becash.png" alt="বিকাশ লোগো" class="method-logo">
+                <h3>বিকাশ</h3>
+                <p class="method-number">নম্বর: 01735251867</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=01735251867@bkash" alt="বিকাশ QR কোড" class="qr-code">
+                <p>বিকাশ অ্যাকাউন্ট থেকে সরাসরি পেমেন্ট করুন।</p>
+            </div>
+            <div class="method-card">
+                <img src="nogod.png" alt="নগদ লোগো" class="method-logo">
+                <h3>নগদ</h3>
+                <p class="method-number">নম্বর: 01735251867</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=01735251867@nagad" alt="নগদ QR কোড" class="qr-code">
+                <p>নগদ অ্যাকাউন্ট থেকে পেমেন্ট।</p>
+            </div>
+            <div class="method-card">
+                <img src="rokat.png" alt="রকেট লোগো" class="method-logo">
+                <h3>রকেট</h3>
+                <p class="method-number">নম্বর: 01735251867</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=01735251867@rocket" alt="রকেট QR কোড" class="qr-code">
+                <p>রকেট দিয়ে পেমেন্ট করুন।</p>
+            </div>
+            <div class="method-card">
+                <img src="upi.png" alt="উপায় লোগো" class="method-logo">
+                <h3>উপায়</h3>
+                <p class="method-number">নম্বর: 01735251867</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=01735251867@upay" alt="উপায় QR কোড" class="qr-code">
+                <p>উপায় অ্যাকাউন্ট থেকে পেমেন্ট।</p>
+            </div>
+        </div>
+        <div class="note">
+            <strong>গুরুত্বপূর্ণ:</strong> আমরা কোনো ব্যাংক কার্ড বা ক্রেডিট কার্ড তথ্য সংরক্ষণ করি না। সব পেমেন্ট নিরাপদ এবং সরাসরি।
+        </div>
+    </div>
+    <div class="payment-section">
+        <h2>পেমেন্ট করার নিয়ম</h2>
+        <ol>
+            <li>অর্ডার দেওয়ার সময় পেমেন্ট মেথড সিলেক্ট করুন।</li>
+            <li>COD সিলেক্ট করলে পণ্য হাতে পেয়ে টাকা দিবেন।</li>
+            <li>মোবাইল ব্যাংকিং সিলেক্ট করলে আমাদের নম্বর দেখাবে — পেমেন্ট করে ট্রানজেকশন আইডি দিন।</li>
+            <li>পেমেন্ট কনফার্ম হলে অর্ডার প্রসেস শুরু হবে।</li>
+        </ol>
+    </div>
+    <div class="payment-section">
+        <h2>যোগাযোগ</h2>
+        <p>পেমেন্ট নিয়ে কোনো সমস্যা হলে:</p>
+        <ul>
+            <li>WhatsApp / Call: 01735251867</li>
+            <li>ইমেইল: mahadi102010@gmail.com</li>
+        </ul>
+    </div>
+</main>
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+<script src="script.js"></script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

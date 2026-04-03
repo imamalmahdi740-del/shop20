@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop 20</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-S..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            transition: all 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(37, 213, 102, 0.7);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+.menu-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+  display: block;          /* এটা না থাকলে লুকিয়ে যেতে পারে */
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.side-menu.active {
+  left: 0;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+      <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+<!-- স্লাইডশো -->
+<div id="slideshow" class="slideshow-section">
+    <div class="slideshow-container">
+        <!-- ছবি এখানে অটো লোড হবে -->
+    </div>
+</div>
+<!-- প্রোডাক্ট সেকশন -->
+<section id="products-section">
+    <h2>আমাদের প্রোডাক্টস</h2>
+    <div id="products-list" class="products-grid"></div>
+</section>
+<!-- ফ্লোটিং WhatsApp -->
+<a href="https://wa.me/8801735251867?text=আসসালামু আলাইকুম..." class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+<!-- সার্চ মডাল -->
+<div id="search-modal" class="search-modal">
+    <div class="search-modal-content">
+        <span class="search-modal-close" onclick="closeSearchModal()">×</span>
+        <h3>প্রোডাক্ট খুঁজুন</h3>
+        <input type="text" id="modal-search-input" placeholder="প্রোডাক্টের নাম লিখুন..." autocomplete="off" onkeydown="if(event.key === 'Enter') { goToSearchResults(); closeSearchModal(); }">
+        <button onclick="goToSearchResults(); closeSearchModal();">সার্চ করুন</button>
+    </div>
+</div>
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+<script src="script.js"></script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyBNEIw9jxvPSLX1dJ3K-NQaPY8esqWlQI8",
+        authDomain: "shop20-91c4a.firebaseapp.com",
+        projectId: "shop20-91c4a",
+        storageBucket: "shop20-91c4a.firebasestorage.app",
+        messagingSenderId: "736464191653",
+        appId: "1:736464191653:web:9ff3f96be9042db0a44d4c",
+        measurementId: "G-M0FX62X93Y"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    window.db = db;
+    console.log("Firestore সংযোগ সফলভাবে হয়েছে!");
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+// প্রোডাক্ট লোড (এটাই ঠিক করা হয়েছে)
+function displayProducts() {
+    const container = document.getElementById('products-list');
+    if (!container) return;
+    container.innerHTML = '';
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    if (products.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#777;">কোনো প্রোডাক্ট এখনো যোগ করা হয়নি</p>';
+        return;
+    }
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <img src="${p.images && p.images[0] ? p.images[0] : (p.image || 'https://via.placeholder.com/300?text=ছবি+নেই')}" alt="${p.name}">
+            <div class="product-info">
+                <h3>${p.name}</h3>
+                <p style="color:#2e7d32; font-weight:bold;">${p.price} টাকা</p>
+            </div>
+        `;
+        card.onclick = () => {
+            window.location.href = `product-detail.html?id=${p.id || products.indexOf(p)}`;
+        };
+        container.appendChild(card);
+    });
+}
+// পেজ লোড হলে প্রোডাক্ট দেখানো
+window.addEventListener('load', displayProducts);
+</script>
+<script>
+// স্লাইডশোর স্টাইল + স্ক্রিপ্ট (শুধু এটাই পরিবর্তন করা হয়েছে)
+const slideStyle = document.createElement('style');
+slideStyle.textContent = `
+    .slideshow-section {
+        width: 100%;
+        margin: 20px auto 40px;
+        padding: 0 15px;
+        max-width: 1280px;
+    }
+
+    .slideshow-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(46, 125, 50, 0.12);
+        background: #f8fafc;
+    }
+
+    .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;   /* পুরো ছবি দেখা যাবে, কাটা যাবে না */
+        object-position: center;
+        background: #f8fafc;   /* ফাঁকা জায়গা হলে হালকা ব্যাকগ্রাউন্ড */
+    }
+
+    .dots {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+    }
+
+    .dot.active {
+        background: #25D366;
+        transform: scale(1.4);
+        box-shadow: 0 0 0 4px rgba(37, 213, 102, 0.3);
+    }
+
+    @media (max-width: 768px) {
+        .slideshow-section { margin: 15px auto 30px; }
+        .dot { width: 8px; height: 8px; }
+        .dots { bottom: 12px; gap: 8px; }
+    }
+`;
+document.head.appendChild(slideStyle);
+
+// স্লাইডশো লোড + অটো চেঞ্জ
+function loadSlideshow() {
+    const container = document.getElementById('slideshow');
+    if (!container) return;
+    const slides = JSON.parse(localStorage.getItem('slides')) || [];
+    if (slides.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#777; padding:40px; font-size:1.3rem;">কোনো স্লাইড এখনো যোগ করা হয়নি</p>';
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="slideshow-container">
+            ${slides.map((src, index) => `
+                <div class="slide ${index === 0 ? 'active' : ''}">
+                    <img src="${src}" alt="Slide ${index+1}">
+                </div>
+            `).join('')}
+            <div class="dots">
+                ${slides.map((_, index) => `
+                    <span class="dot ${index === 0 ? 'active' : ''}" onclick="currentSlide(${index+1})"></span>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    let slideIndex = 0;
+    const slidesElements = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(n) {
+        slidesElements.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        slideIndex = n;
+        slidesElements[slideIndex].classList.add('active');
+        dots[slideIndex].classList.add('active');
+    }
+
+    function currentSlide(n) {
+        showSlide(n - 1);
+    }
+
+    // অটো স্লাইড — প্রতি ১.৫ সেকেন্ডে
+    setInterval(() => {
+        let next = (slideIndex + 1) % slides.length;
+        showSlide(next);
+    }, 2000);
+}
+
+// পেজ লোড হলে চালু
+window.addEventListener('load', loadSlideshow);
+// প্রোডাক্ট লোড (সুন্দর অফার সহ দেখানো)
+function displayProducts() {
+    const container = document.getElementById('products-list');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const offers = JSON.parse(localStorage.getItem('offers')) || [];
+
+    if (products.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#777; padding:60px 20px; font-size:1.3rem;">কোনো প্রোডাক্ট এখনো যোগ করা হয়নি</p>';
+        return;
+    }
+
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        
+        // এই প্রোডাক্টের অফার খুঁজে বের করা
+        const activeOffer = offers.find(o => o.productId == (p.id || products.indexOf(p)));
+        
+        let priceHTML = '';
+        let offerBadge = '';
+        let expiryHTML = '';
+
+        if (activeOffer) {
+            const oldPrice = p.price;
+            const newPrice = activeOffer.discountType === 'percent'
+                ? Math.round(oldPrice * (1 - activeOffer.discountValue / 100))
+                : oldPrice - activeOffer.discountValue;
+
+            const discountText = activeOffer.discountType === 'percent'
+                ? `-${activeOffer.discountValue}%` 
+                : `-${activeOffer.discountValue} টাকা`;
+
+            priceHTML = `
+                <div style="display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin:10px 0;">
+                    <span style="text-decoration: line-through; color:#888; font-size:1.15rem;">
+                        ${oldPrice} টাকা
+                    </span>
+                    <span style="color:#2e7d32; font-size:1.5rem; font-weight:bold;">
+                        ${newPrice} টাকা
+                    </span>
+                </div>
+            `;
+
+            offerBadge = `
+                <div class="offer-badge" style="
+                    position: absolute;
+                    top: 12px;
+                    right: 12px;
+                    background: linear-gradient(135deg, #ff5252, #d50000);
+                    color: white;
+                    padding: 6px 16px;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    font-size: 0.95rem;
+                    box-shadow: 0 4px 12px rgba(255,82,82,0.4);
+                    z-index: 10;
+                    animation: pulseBadge 2s infinite;
+                ">
+                    ${discountText} ছাড়
+                </div>
+            `;
+
+            expiryHTML = `
+                <p style="color:#d32f2f; font-size:0.95rem; margin-top:8px; font-weight:600;">
+                    ⏳ অফার শেষ: ${new Date(activeOffer.endDate).toLocaleDateString('bn-BD')}
+                </p>
+            `;
+        } else {
+            priceHTML = `
+                <p style="color:#2e7d32; font-weight:bold; font-size:1.45rem; margin:12px 0;">
+                    ${p.price} টাকা
+                </p>
+            `;
+        }
+
+        card.innerHTML = `
+            <div style="position:relative; overflow:hidden;">
+                ${offerBadge}
+                <img src="${p.images && p.images[0] ? p.images[0] : (p.image || 'https://via.placeholder.com/300?text=ছবি+নেই')}" alt="${p.name}" style="width:100%; height:240px; object-fit:cover; transition:transform 0.5s;">
+            </div>
+            <div class="product-info" style="padding:18px; text-align:center; position:relative;">
+                <h3 style="margin:0 0 10px; font-size:1.35rem; color:#1e293b;">${p.name}</h3>
+                ${priceHTML}
+                ${expiryHTML}
+                <button onclick="window.location.href='product-detail.html?id=${p.id || products.indexOf(p)}'" 
+                        style="margin-top:15px; width:100%; padding:12px; background:linear-gradient(135deg, #2e7d32, #4caf50); color:white; border:none; border-radius:50px; font-size:1.05rem; font-weight:bold; cursor:pointer; transition:all 0.3s;">
+                    বিস্তারিত দেখুন
+                </button>
+            </div>
+        `;
+
+        // হোভার ইফেক্ট
+        card.style.transition = 'all 0.4s ease';
+        card.style.borderRadius = '16px';
+        card.style.overflow = 'hidden';
+        card.style.boxShadow = '0 8px 25px rgba(46,125,50,0.08)';
+        card.style.background = 'white';
+        card.style.cursor = 'pointer';
+
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            card.style.boxShadow = '0 20px 50px rgba(46,125,50,0.22)';
+            card.querySelector('img').style.transform = 'scale(1.08)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 8px 25px rgba(46,125,50,0.08)';
+            card.querySelector('img').style.transform = 'scale(1)';
+        });
+
+        card.onclick = () => {
+            window.location.href = `product-detail.html?id=${p.id || products.indexOf(p)}`;
+        };
+
+        container.appendChild(card);
+    });
+}
+
+// পেজ লোড হলে প্রোডাক্ট + অফার দেখানো
+window.addEventListener('load', displayProducts);
+</script>
+<script>
+// আপনার goToSearchResults ফাংশন যদি না থাকে তাহলে এটি যোগ করুন
+// অথবা যদি থাকে তাহলে শুধু ভিতরের কোডটা রিপ্লেস করুন
+function goToSearchResults() {
+    const input = document.getElementById('modal-search-input');
+    if (!input) return alert('সার্চ বক্স পাওয়া যায়নি');
+
+    const query = input.value.trim();
+    
+    if (!query) {
+        alert("অনুগ্রহ করে কিছু লিখুন");
+        return;
+    }
+
+    // সার্চ রেজাল্ট পেইজে পাঠানো
+    window.location.href = `search-results.html?q=${encodeURIComponent(query)}`;
+}
+</script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>
+<script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

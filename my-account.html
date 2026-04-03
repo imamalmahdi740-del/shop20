@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার অ্যাকাউন্ট | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <!-- Font Awesome আইকনের জন্য -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-S..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged,
+            GoogleAuthProvider,
+            signInWithPopup,
+            FacebookAuthProvider,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyBNEIw9jxvPSLX1dJ3K-NQaPY8esqWlQI8",
+            authDomain: "shop20-91c4a.firebaseapp.com",
+            projectId: "shop20-91c4a",
+            storageBucket: "shop20-91c4a.firebasestorage.app",
+            messagingSenderId: "736464191653",
+            appId: "1:736464191653:web:9ff3f96be9042db0a44d4c"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        window.auth = auth;
+    </script>
+    <style>
+        /* ইউনিক + আকর্ষণীয় লগইন/রেজিস্টার ফর্ম ডিজাইন */
+        .auth-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .tab-btn {
+            padding: 14px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            background: #f0f0f0;
+            color: #555;
+            cursor: pointer;
+            border-radius: 50px 50px 0 0;
+            transition: all 0.3s;
+            margin: 0 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(46,125,50,0.3);
+        }
+        .auth-form {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(46,125,50,0.15);
+            max-width: 480px;
+            margin: 0 auto 40px;
+            border: 1px solid rgba(46,125,50,0.1);
+            transition: all 0.4s;
+        }
+        .auth-form:hover {
+            box-shadow: 0 25px 70px rgba(46,125,50,0.22);
+        }
+        .auth-form h2 {
+            font-family: 'Shrikhand', cursive;
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+        .auth-form input,
+        .auth-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+        }
+        .auth-form input:focus,
+        .auth-form textarea:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 0 4px rgba(76,175,80,0.15);
+            outline: none;
+        }
+        .auth-submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.4s;
+            box-shadow: 0 6px 20px rgba(46,125,50,0.3);
+        }
+        .auth-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(46,125,50,0.45);
+        }
+        .social-login {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .social-login p {
+            color: #777;
+            margin: 15px 0;
+        }
+        .social-btn {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        .google {
+            background: #4285F4;
+            color: white;
+        }
+        .facebook {
+            background: #1877F2;
+            color: white;
+        }
+        .social-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .error-msg {
+            color: #e63946;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        /* ড্যাশবোর্ড স্টাইল (আগের মতোই রাখা হয়েছে, কিন্তু সুন্দর করা হয়েছে) */
+        .dashboard-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(46,125,50,0.15);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e8f5e9;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .logout-btn {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .logout-btn:hover {
+            background: #c62828;
+            transform: translateY(-3px);
+        }
+        .orders-section {
+            margin-top: 40px;
+        }
+        .order-history-list {
+            background: #f8fff8;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.03);
+        }
+		.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 1.8rem 1.2rem;
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-family: 'Shrikhand', cursive;
+  font-size: 2.3rem;
+  margin: 0;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: all 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.sidebar-menu a i {
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+       <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html"><img src="favicon-32x32.png" alt="shop 20" class="header-logo"></a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+<main class="container my-account-page">
+    <!-- লগইন/রেজিস্ট্রেশন কার্ড -->
+    <div class="auth-tabs">
+        <button class="tab-btn active" onclick="showTab('login')">লগইন</button>
+        <button class="tab-btn" onclick="showTab('register')">রেজিস্টার</button>
+    </div>
+    <!-- লগইন ফর্ম -->
+    <div id="login-tab" class="auth-form">
+        <h2>লগইন করুন</h2>
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="ইমেইল" required>
+            <input type="password" id="login-password" placeholder="পাসওয়ার্ড" required>
+            <button type="button" onclick="loginWithEmail()" class="auth-submit-btn">লগইন</button>
+        </form>
+        <div class="social-login">
+            <p>অথবা</p>
+            <button onclick="loginWithGoogle()" class="social-btn google"><i class="fab fa-google"></i> Google দিয়ে লগইন</button>
+            <button onclick="loginWithFacebook()" class="social-btn facebook"><i class="fab fa-facebook-f"></i> Facebook দিয়ে লগইন</button>
+        </div>
+        <p id="login-error" class="error-msg"></p>
+    </div>
+    <!-- রেজিস্ট্রেশন ফর্ম -->
+    <div id="register-tab" class="auth-form" style="display:none;">
+        <h2>নতুন অ্যাকাউন্ট খুলুন</h2>
+        <form id="register-form">
+            <input type="text" id="reg-name" placeholder="আপনার নাম" required>
+            <input type="tel" id="reg-mobile" placeholder="মোবাইল নম্বর" required pattern="01[3-9][0-9]{8}">
+            <input type="email" id="reg-email" placeholder="ইমেইল" required>
+            <input type="password" id="reg-password" placeholder="পাসওয়ার্ড (৬+ অক্ষর)" required minlength="6">
+            <div class="form-group">
+                <label>প্রোফাইল ছবি (ঐচ্ছিক)</label>
+                <input type="file" id="reg-photo" accept="image/*">
+            </div>
+            <button type="button" onclick="registerUser()" class="auth-submit-btn register-btn">রেজিস্টার করুন</button>
+        </form>
+        <div class="social-login">
+            <p>অথবা</p>
+            <button onclick="loginWithGoogle()" class="social-btn google"><i class="fab fa-google"></i> Google দিয়ে রেজিস্টার</button>
+            <button onclick="loginWithFacebook()" class="social-btn facebook"><i class="fab fa-facebook-f"></i> Facebook দিয়ে রেজিস্টার</button>
+        </div>
+        <p id="register-error" class="error-msg"></p>
+    </div>
+    <!-- ড্যাশবোর্ড -->
+    <div id="dashboard" class="dashboard-card" style="display:none;">
+        <div class="profile-header">
+            <img id="user-photo" src="https://via.placeholder.com/120" alt="প্রোফাইল ছবি" class="user-avatar">
+            <div>
+                <h2 id="user-name-display">স্বাগতম!</h2>
+                <p id="user-email-display"></p>
+                <p id="user-mobile-display"></p>
+            </div>
+        </div>
+        <button onclick="logout()" class="logout-btn">লগআউট</button>
+        <div class="orders-section">
+            <h3>আমার অর্ডারসমূহ</h3>
+            <div id="order-history" class="order-history-list">
+                <p style="color:#777; text-align:center;">কোনো অর্ডার এখনো নেই।</p>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+<script src="script.js"></script>
+<script>
+// ট্যাব সুইচ ফাংশন
+function showTab(tab) {
+    document.getElementById('login-tab').style.display = 'none';
+    document.getElementById('register-tab').style.display = 'none';
+    document.getElementById(tab + '-tab').style.display = 'block';
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`button[onclick="showTab('${tab}')"]`).classList.add('active');
+    document.getElementById('login-error').textContent = '';
+    document.getElementById('register-error').textContent = '';
+}
+
+// রেজিস্ট্রেশন (সফল হলে অটো লগইন + ড্যাশবোর্ড দেখানো)
+function registerUser() {
+    const name = document.getElementById('reg-name').value.trim();
+    const mobile = document.getElementById('reg-mobile').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const password = document.getElementById('reg-password').value;
+    const photoFile = document.getElementById('reg-photo').files[0];
+
+    if (!name || !mobile || !email || !password) {
+        document.getElementById('register-error').textContent = 'সব তথ্য পূরণ করুন';
+        return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            let photoURL = null;
+            if (photoFile) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    photoURL = e.target.result;
+                    updateProfile(user, { displayName: name, photoURL }).then(() => {
+                        localStorage.setItem('userMobile', mobile);
+                        alert('রেজিস্ট্রেশন সফল! আপনি এখন লগইন অবস্থায় আছেন');
+                        document.getElementById('register-error').textContent = '';
+                    });
+                };
+                reader.readAsDataURL(photoFile);
+            } else {
+                updateProfile(user, { displayName: name }).then(() => {
+                    localStorage.setItem('userMobile', mobile);
+                    alert('রেজিস্ট্রেশন সফল! আপনি এখন লগইন অবস্থায় আছেন');
+                    document.getElementById('register-error').textContent = '';
+                });
+            }
+        })
+        .catch((error) => {
+            document.getElementById('register-error').textContent = error.message;
+        });
+}
+
+// লগইন
+function loginWithEmail() {
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            document.getElementById('login-error').textContent = '';
+        })
+        .catch((error) => {
+            document.getElementById('login-error').textContent = error.message;
+        });
+}
+
+// Google লগইন
+function loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .catch((error) => {
+            document.getElementById('login-error').textContent = error.message;
+        });
+}
+
+// Facebook লগইন
+function loginWithFacebook() {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+        .catch((error) => {
+            document.getElementById('login-error').textContent = error.message;
+        });
+}
+
+// লগআউট
+function logout() {
+    signOut(auth).then(() => {
+        alert('লগআউট সফল!');
+        localStorage.removeItem('userMobile');
+    }).catch((error) => {
+        alert('লগআউটে সমস্যা: ' + error.message);
+    });
+}
+
+// অথেন্টিকেশন স্টেট চেক + ড্যাশবোর্ড দেখানো
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        document.getElementById('login-tab').style.display = 'none';
+        document.getElementById('register-tab').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+
+        // প্রোফাইল ডাটা লোড
+        document.getElementById('user-name-display').textContent = user.displayName || 'স্বাগতম!';
+        document.getElementById('user-email-display').textContent = user.email || 'ইমেইল নেই';
+        document.getElementById('user-mobile-display').textContent = localStorage.getItem('userMobile') || 'মোবাইল নেই';
+        document.getElementById('user-photo').src = user.photoURL || 'https://via.placeholder.com/120?text=প্রোফাইল';
+    } else {
+        document.getElementById('dashboard').style.display = 'none';
+        showTab('login');
+    }
+});
+</script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>
+<script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

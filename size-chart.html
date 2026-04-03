@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সাইজ চার্ট | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 920px;
+            margin: 60px auto 80px;
+            padding: 0 20px;
+        }
+        h1 {
+            font-family: 'Shrikhand', cursive;
+            font-size: 3.5rem;
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #1e5e20, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #475569;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        .size-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(46,125,50,0.08);
+            border: 1px solid rgba(46,125,50,0.1);
+        }
+        h2 {
+            color: #1e5e20;
+            font-size: 2rem;
+            margin: 0 0 24px;
+            border-bottom: 3px solid #a5d6a7;
+            padding-bottom: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        th, td {
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.05rem;
+        }
+        th {
+            background: #2e7d32;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        tr:hover {
+            background: #e8f5e9;
+        }
+        .note {
+            background: #e8f5e9;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+            color: #1e5e20;
+            font-size: 1.05rem;
+        }
+        @media (max-width: 640px) {
+            table, th, td { font-size: 0.95rem; padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <span class="menu-icon" onclick="toggleSideMenu()">☰</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+
+<div id="side-menu" class="side-menu">
+    <div class="menu-header">
+        <h3>মেনু</h3>
+        <span class="close-btn" onclick="toggleSideMenu()">×</span>
+    </div>
+    <button onclick="window.location.href='admin.html'">অ্যাডমিন প্যানেল</button>
+    <button onclick="window.location.href='my-account.html'">আমার অ্যাকাউন্ট</button>
+    <button onclick="window.location.href='track-order.html'">অর্ডার ট্র্যাক</button>
+    <button onclick="window.location.href='shipping-delivery.html'">ডেলিভারি ও শিপিং</button>
+    <button onclick="window.location.href='about.html'">আমাদের সম্পর্কে</button>
+    <button onclick="window.location.href='contact.html'">যোগাযোগ</button>
+    <button onclick="window.location.href='privacy-policy.html'">প্রাইভেসি পলিসি</button>
+    <button onclick="window.location.href='faq.html'">প্রশ্ন-উত্তর</button>
+    <button onclick="window.location.href='offers.html'">অফারস / ডিলস</button>
+</div>
+
+<main class="container">
+    <h1>সাইজ চার্ট</h1>
+    <p class="subtitle">সঠিক সাইজ নির্বাচন করতে নিচের চার্ট দেখুন। যদি কোনো সন্দেহ থাকে, আমাদের সাথে যোগাযোগ করুন।</p>
+
+    <div class="size-section">
+        <h2>টি-শার্ট / পোলো শার্ট (পুরুষ)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>সাইজ</th>
+                    <th>বুক (ইঞ্চি)</th>
+                    <th>লম্বা (ইঞ্চি)</th>
+                    <th>কাঁধ (ইঞ্চি)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>S</td><td>36-38</td><td>27</td><td>17</td></tr>
+                <tr><td>M</td><td>38-40</td><td>28</td><td>18</td></tr>
+                <tr><td>L</td><td>40-42</td><td>29</td><td>19</td></tr>
+                <tr><td>XL</td><td>42-44</td><td>30</td><td>20</td></tr>
+                <tr><td>XXL</td><td>44-46</td><td>31</td><td>21</td></tr>
+            </tbody>
+        </table>
+        <p class="note">এই চার্ট সাধারণ গাইডলাইন। ব্র্যান্ড অনুযায়ী সামান্য পার্থক্য হতে পারে।</p>
+    </div>
+
+    <div class="size-section">
+        <h2>টি-শার্ট / টপ (মহিলা)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>সাইজ</th>
+                    <th>বুক (ইঞ্চি)</th>
+                    <th>কোমর (ইঞ্চি)</th>
+                    <th>লম্বা (ইঞ্চি)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>S</td><td>34-36</td><td>26-28</td><td>25</td></tr>
+                <tr><td>M</td><td>36-38</td><td>28-30</td><td>26</td></tr>
+                <tr><td>L</td><td>38-40</td><td>30-32</td><td>27</td></tr>
+                <tr><td>XL</td><td>40-42</td><td>32-34</td><td>28</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="size-section">
+        <h2>জুতার সাইজ চার্ট</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>UK</th>
+                    <th>EU</th>
+                    <th>US (পুরুষ)</th>
+                    <th>সেন্টিমিটার</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>6</td><td>39</td><td>7</td><td>24.5</td></tr>
+                <tr><td>7</td><td>40</td><td>8</td><td>25.5</td></tr>
+                <tr><td>8</td><td>41</td><td>9</td><td>26.5</td></tr>
+                <tr><td>9</td><td>42</td><td>10</td><td>27.5</td></tr>
+                <tr><td>10</td><td>43</td><td>11</td><td>28.5</td></tr>
+            </tbody>
+        </table>
+        <p class="note">জুতা কেনার আগে পায়ের দৈর্ঘ্য মেপে নিন।</p>
+    </div>
+
+    <div class="size-section">
+        <h2>গুরুত্বপূর্ণ নোট</h2>
+        <ul>
+            <li>সাইজ চার্ট সাধারণ গাইডলাইন। ব্র্যান্ডভেদে সামান্য পার্থক্য হতে পারে।</li>
+            <li>কোনো সন্দেহ থাকলে আমাদের সাথে যোগাযোগ করুন — আমরা সাহায্য করব।</li>
+            <li>সঠিক সাইজ না হলে রিটার্ন/এক্সচেঞ্জ করা যাবে (শর্তসাপেক্ষে)।</li>
+        </ul>
+    </div>
+</main>
+
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

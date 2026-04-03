@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের সম্পর্কে | shop 20</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <!-- Font Awesome আইকন -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <span class="menu-icon" onclick="toggleSideMenu()" style="color: #000000;">
+  <i class="fas fa-bars"></i>
+</span>
+        <div class="header-center">
+            <a href="index.html">
+                <img src="favicon-32x32.png" alt="shop 20" class="header-logo">
+            </a>
+            <h1 class="site-name">shop 20</h1>
+        </div>
+        <div class="right-icons">
+            <span class="search-icon" onclick="openSearchModal()">🔍</span>
+            <span class="cart-icon" onclick="alert('কার্ট ফিচার এখনো চালু হয়নি')">🛒</span>
+        </div>
+    </div>
+</header>
+
+<!-- সাইড মেনু -->
+<!-- সাইড মেনু (নতুন ফরম্যাট - আইকন সহ) -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>shop 20</h2>
+  </div>
+  <nav class="sidebar-menu">
+    <a href="admin.html"><i class="fas fa-user-shield"></i> অ্যাডমিন প্যানেল</a>
+    <a href="my-account.html"><i class="fas fa-user"></i> আমার অ্যাকাউন্ট</a>
+    <a href="media.html"><i class="fas fa-link"></i> আমাদের মিডিয়া</a>
+    <a href="track-order.html"><i class="fas fa-truck"></i> অর্ডার ট্র্যাক</a>
+    <a href="shipping-delivery.html"><i class="fas fa-shipping-fast"></i> ডেলিভারি ও শিপিং</a>
+    <a href="delivery-map.html"><i class="fas fa-map-marked-alt"></i> ডেলিভারি মেপ</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> আমাদের সম্পর্কে</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> যোগাযোগ</a>
+    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> প্রাইভেসি পলিসি</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> প্রশ্ন-উত্তর</a>
+    <a href="offers.html"><i class="fas fa-tags"></i> অফারস / ডিলস</a>
+    <a href="payment-methods.html"><i class="fas fa-credit-card"></i> পেমেন্ট মেথড</a>
+    <a href="size-chart.html"><i class="fas fa-ruler-combined"></i> সাইজ চার্ট</a>
+    <a href="shipping-delivery.html"><i class="fas fa-truck-loading"></i> সপিং / ডেলিভারি</a>
+    <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> টার্মস অ্যান্ড কন্ডিশন</a>
+    <a href="developer-bio.html"><i class="fas fa-code"></i> ডেভেলপারের জীবনী</a>
+    <a href="share-person.html"><i class="fas fa-users"></i> শেয়ারহোল্ডারদের জীবনী</a>
+  </nav>
+</aside>
+
+<!-- হিরো সেকশন -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>আমরা shop 20</h1>
+        <p>আপনার বিশ্বস্ত অনলাইন শপ – সেরা মানের প্রোডাক্ট, দ্রুত ডেলিভারি, ১০০% সন্তুষ্টি</p>
+    </div>
+</section>
+
+<main class="container about-container">
+    <!-- আমাদের গল্প -->
+    <section class="story-section">
+        <h2>আমাদের গল্প</h2>
+        <p>shop 20 শুরু হয়েছিল ২০২৫ সালে ঢাকা থেকে – একটা ছোট্ট দলের স্বপ্ন নিয়ে। আমাদের লক্ষ্য ছিল সাধারণ মানুষের কাছে সেরা মানের প্রোডাক্ট সবচেয়ে সাশ্রয়ী দামে পৌঁছে দেওয়া।</p>
+        <p>আজ আমরা সারা বাংলাদেশে হাজারো গ্রাহকের ভালোবাসা ও বিশ্বাস অর্জন করেছি। প্রতিটি অর্ডারের পেছনে আছে আমাদের টিমের কঠোর পরিশ্রম, সততা এবং গ্রাহকের প্রতি দায়বদ্ধতা।</p>
+    </section>
+
+    <!-- আমাদের প্রতিশ্রুতি / ফিচার -->
+    <section class="promises-section">
+        <h2>আমাদের প্রতিশ্রুতি</h2>
+        <div class="promises-grid">
+            <div class="promise-card">
+                <i class="fas fa-rocket"></i>
+                <h3>দ্রুত ডেলিভারি</h3>
+                <p>ঢাকায় ১–২ দিন, ঢাকার বাইরে ২–৪ দিনের মধ্যে</p>
+            </div>
+            <div class="promise-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>নিরাপদ পেমেন্ট</h3>
+                <p>ক্যাশ অন ডেলিভারি + সিকিউর মোবাইল ব্যাংকিং</p>
+            </div>
+            <div class="promise-card">
+                <i class="fas fa-undo-alt"></i>
+                <h3>সহজ রিটার্ন</h3>
+                <p>৭ দিনের মধ্যে রিটার্ন ও রিফান্ড</p>
+            </div>
+            <div class="promise-card">
+                <i class="fas fa-headset"></i>
+                <h3>২৪/৭ সাপোর্ট</h3>
+                <p>যেকোনো সমস্যায় আমরা আছি আপনার পাশে</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- কেন আমাদের বেছে নেবেন -->
+    <section class="why-us-section">
+        <h2>কেন shop 20?</h2>
+        <div class="why-us-grid">
+            <div class="why-us-card">
+                <i class="fas fa-thumbs-up"></i>
+                <h3>সেরা মানের প্রোডাক্ট</h3>
+                <p>প্রতিটি প্রোডাক্ট কোয়ালিটি চেক করে পাঠানো হয়</p>
+            </div>
+            <div class="why-us-card">
+                <i class="fas fa-wallet"></i>
+                <h3>সাশ্রয়ী দাম</h3>
+                <p>বাজারের তুলনায় সবচেয়ে কম দামে</p>
+            </div>
+            <div class="why-us-card">
+                <i class="fas fa-smile"></i>
+                <h3>গ্রাহক সন্তুষ্টি</h3>
+                <p>হাজারো গ্রাহকের ৫ স্টার রিভিউ</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>ডেভেলপার: imam al mahdi | ইমেইল: mahadi102010@gmail.com | নাম্বার: 01735251867</p>
+    <p>© ২০২৬ shop 20 | সকল অধিকার সংরক্ষিত</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+  // মেনু বাটনের জন্য (হেডারে যে ☰ আছে সেটার onclick পরিবর্তন করুন)
+  // আপনার হেডারে এই লাইনটা খুঁজে onclick="toggleSideMenu()" → onclick="toggleSidebar()" করে দিন
+  // অথবা নিচের লাইন যোগ করুন
+  document.querySelector('.menu-icon').onclick = toggleSidebar;
+  // বাইরে ক্লিক করলে বন্ধ
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+</script>                                                                                                                                                                     <script>
+  function toggleSideMenu() {
+    const sideMenu = document.getElementById('side-menu');
+    if (sideMenu) {
+      sideMenu.classList.toggle('active');
+    }
+  }
+
+  // বাইরে ক্লিক করলে মেনু বন্ধ
+  document.addEventListener('click', function(event) {
+    const sideMenu = document.getElementById('side-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sideMenu && !sideMenu.contains(event.target) && !menuIcon.contains(event.target)) {
+      sideMenu.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>
